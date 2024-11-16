@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# Test unitaire :
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- C'est mécanisme utilisé pour tester chaque fonctionnalité dans votre application (Component)
 
-## Available Scripts
+## La bibliothèque Enzyme :
 
-In the project directory, you can run:
+C'est une biblio pour tester les composants : il manipule le DOM (rendre le composant et chercher des éléments)
 
-### `npm start`
+Pour installer Enzyme :
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+npm i --save-dev enzyme
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+npm i --save-dev enzyme-adapter-react-16 --force
 
-### `npm test`
+Enzyme dispose de plusieurs fonctions :
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- shallow :
+  const mycomponent = shallow(`<App/>);`
+  mycomponent.find(....)
+- mount
+- render
 
-### `npm run build`
+Utilier enzyme dans le fichier App.test.js
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+import Enzyme from 'enzyme'; // exposer directement shallow, render, mout
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+import Adapter from 'enzyme-adapter-react-16';
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Enzyme.config({ adpter : new Adapter() });
 
-### `npm run eject`
+import App from '.....';
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+describe('Groupe1', ()=>{
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+it('Test 1', ()=> {
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+const myApp = shallow(`<App/>`)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+const buttons = myApp.find('button')
 
-## Learn More
+});
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+it('Test 2', ()=> {
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+});
 
-### Code Splitting
+});
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+describe('Groupe 3', ()=>{
 
-### Analyzing the Bundle Size
+test('Test 1', ()=> {
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+});
 
-### Making a Progressive Web App
+});
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Le framework Jest
 
-### Advanced Configuration
+- Permet d'éxécuter le test unitaire : describe(), it(), test(), expect() ....
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## React Testing Library
 
-### Deployment
+import {render, screen, ....} from '@testing-library/react';
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Créer un fichier pour le test unitaire
 
-### `npm run build` fails to minify
+- Extension : App.test.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Les étapes des test :
+
+it('test 1', ()=>{
+
+// 1- Génération
+
+// 2 - Action
+
+// 3 - Assertion
+
+});
+
+## Lancer le test unitaire :
+
+npm run test
+
+npm test
